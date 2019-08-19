@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			window.onload=function(){
+				new Vue({
+					el:'#root',
+					data:{//vue实例对应的html变量范围
+						msg:'hello v-for',
+						age:19,
+						flag:true,
+						arr:['aa','bb','cc'],
+						obj:{name:'jerry',age:18},
+						lists:[
+						{name:'aaa',id:111},
+						{name:'bbb',id:222},
+						{name:'ccc',id:333},
+						]
+					},
+					methods:{
+						
+					click1:function(){
+					this.age=18;
+					},
+					/*mouseover(){
+						this.age=21;
+					},*/
+					mouseover:function(){
+						this.age=20;
+					},
+					mouseout:function(){
+						this.age=23;
+					},
+					dbclick:function(){
+						this.age=2233;
+					},
+					}
+				})
+			}
+		</script>
+	</head>
+	<body>
+		<div id="root">
+			<!--v-for-->
+			<div>{{msg}}--{{age}}</div>
+			<ul>
+				<li v-for="(value,index) in arr">{{value}}--{{index}}</li>
+				<!--遍历数组-->
+				<li v-for="(value,index) in obj">{{value}}--{{index}}</li>
+				<!--遍历对象-->
+				<li v-for="(value,index) in lists">{{value}}--{{index}}</li>
+				<!--遍历数组对象-->
+			</ul>
+			<!--事件绑定,点击事件-->
+			<button v-on:click="click1">click1</button>
+			<!--鼠标移动事件-->
+			<button v-on:mouseover="mouseover">mouseover</button>
+			<!--鼠标事件-->
+			<button v-on:mouseout="mouseout">mouseout</button>
+			<!--简洁写法-->
+			<button @dblclick="dbclick">dbclick</button>
+			<!--隐藏显示内容-->
+			<button v-show="flag">是否显示</button>
+			<!--表达式写法-->
+			<button v-show="age==18">是否显示，年龄为18时显示</button>
+			<!--判断条件if else-->
+			<p v-if="age==18">18</p>
+			<p v-else-if="age==20">20</p>
+			<p v-else="not">not</p>
+			<!--三目表达式-->
+			<p v-if="flag?msg='hello':msg='hello vue'">{{msg}}</p>
+		</div>
+	</body>
+</html>
